@@ -14,36 +14,28 @@
             <li class="active">Company Management</li>
           </ol>
         </section>
+<!-- TABLE: LATEST ORDERS -->
 
         <!-- Main content -->
         <section class="content">
-
-              <!-- TABLE: LATEST ORDERS -->
-
-			   <table class="table no-margin">
+			
+			<table style="width:30%;margin:5px;" >
                       <thead>
+					  <form action="" method="GET">
 						<tr>
-						<td colspan="100%">
-						<form action="" method="GET">
-						 <div style="float:right" id="parent">	
-							<div class="input-group" style="width: 150px;float:left;">
-								<select name="search_option" class="form-control">
-									<option value='level'>Level</option>
-									<option value='company'>Company</option>
-									<option value='name'>Name</option>
-								</select>
-							</div>
-							<div class="input-group" style="width: 150px;float:right;">
-							  <input type="text" name="username" class="form-control input-sm pull-right" placeholder="Search" value="<?=Input::get('username')?>">
-							
-							  <div class="input-group-btn">
-								<button type="submit "class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-							  </div>
-							 </div>
-						  </form>
-						</td>
+							<td><?=Lang::get($lang . '.search');?></td>
+							<td><select name="search_option" class="form-control input-sm">
+										<option value='level'>Level</option>
+										<option value='company'>Company</option>
+										<option value='name'>Name</option>
+									</select>
+							</td>
+							<td><input type="text" name="username" class="form-control input-sm pull-right" placeholder="Search" value="<?=Input::get('username')?>"></td>
+							<td><button type="submit "class="btn btn-sm btn-default"><i class="fa fa-search"></i></button></td>
 						</tr>
+					  </form>
 				</table>
+              
 
               <div class="box box-info">
                 <div class="box-header with-border">
