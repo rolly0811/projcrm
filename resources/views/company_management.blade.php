@@ -25,14 +25,22 @@
 						<tr>
 						<td colspan="100%">
 						<form action="" method="GET">
+						 <div style="float:right" id="parent">	
+							<div class="input-group" style="width: 150px;float:left;">
+								<select name="search_option" class="form-control">
+									<option value='level'>Level</option>
+									<option value='company'>Company</option>
+									<option value='name'>Name</option>
+								</select>
+							</div>
 							<div class="input-group" style="width: 150px;float:right;">
 							  <input type="text" name="username" class="form-control input-sm pull-right" placeholder="Search" value="<?=Input::get('username')?>">
-							  
+							
 							  <div class="input-group-btn">
 								<button type="submit "class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
 							  </div>
-						</form>
 							 </div>
+						  </form>
 						</td>
 						</tr>
 				</table>
