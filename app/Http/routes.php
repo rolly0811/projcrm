@@ -29,6 +29,7 @@ Route::any('/company/add', 'CompanyController@showCompany_ADD');
 //VALIDATION
 Route::any('/check/company', 'CompanyManagementController@validate_company');
 Route::post('/check/manager', 'CompanyManagementController@validate_manager');
+Route::post('/check/manager/sample', 'CompanyManagementController@validate_manager_sample');
 
 
 /*
