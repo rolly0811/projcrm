@@ -30,6 +30,7 @@ return array(
 		 'add_company' => 'Add Company Manager', 
 		 'add_new_company' => 'Add New Company',
 		 'search' => 'Search by: ',
+		  'choose_option' => 'Choose Option',
 		  'start_date' => 'Start Date', // ACCOUNTS
 		  'end_date' => 'End Date',
 		  'months' => 'Months',
@@ -78,6 +79,7 @@ return array(
 		 'add_company' => '업체장 소속 등록',
 		 'add_new_company' => ' 업체장 소속 등록',
 		  'search' => '검 색',
+		  'choose_option' => '선택해주세요.',
 		  'start_date' => '결재 시작일', // ACCOUNTS
 		  'end_date' => '결재 종료일',
 		  'months' => '개월수',

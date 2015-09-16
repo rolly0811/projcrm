@@ -22,6 +22,8 @@
     <link href="{{ asset('/assets/plugins/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Select2 -->
     <link href="{{ asset('/assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
+	<!-- For Alert -->	
+	<link rel="stylesheet" href="{{ asset('/assets/dist/css/sweetalert.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

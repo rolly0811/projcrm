@@ -44,6 +44,7 @@ class CompanyManagementController extends Controller
 				window.opener.location.reload();
 				}
 			</script>
+			
 			<script>window.close();</script>";
 	}
 
@@ -56,9 +57,10 @@ class CompanyManagementController extends Controller
 				window.opener.location.reload();
 				}
 			</script>";
+			
 	}
 
-    function showCompanyManagement() 
+    public function showCompanyManagement() 
 	{
 		/*
 		$result = DB::table('manager_company_tbl')
@@ -66,16 +68,38 @@ class CompanyManagementController extends Controller
 			      ->leftJOIN('manager_account_tbl','manager_tbl.manager_idx','=','manager_account_tbl.manager_idx_fk','WHERE','manager_account_tbl.account_status','=','Active') // ON/AND
 				  ->Paginate(10);
 		*/
-			$result = DB::table('manager_company_tbl')
+			$search = Input::get('search');
+			$search_manager_status = Input::get('manager_status');
+			/*
+			$query = DB::table('manager_company_tbl')
 				  ->JOIN('manager_tbl','manager_company_tbl.manager_company_id', '=' , 'manager_tbl.manager_company_id_fk')
 			      ->leftJOIN('manager_account_tbl',function($joins)
 						{
 								$joins->on('manager_tbl.manager_idx','=','manager_account_tbl.manager_idx_fk');
 								$joins->on('manager_account_tbl.account_status','=',DB::raw("'Active'"));
-						})// LEFT JOIN ON,WHERE
-				  ->Paginate(10);
+						}) // LEFT JOIN ON,WHERE
+			      ->WHERE('manager_tbl.manager_name','LIKE', '%' . $search . '%')
+				  ->orWHERE('manager_company_tbl.manager_company_name','LIKE', '%' . $search . '%');
+			*/
+			$query = DB::table('manager_company_tbl')
+				  ->JOIN('manager_tbl','manager_company_tbl.manager_company_id', '=' , 'manager_tbl.manager_company_id_fk')
+			      ->leftJOIN('manager_account_tbl',function($joins)
+						{
+								$joins->on('manager_tbl.manager_idx','=','manager_account_tbl.manager_idx_fk');
+								$joins->on('manager_account_tbl.account_status','=',DB::raw("'Active'"));
+						}) // LEFT JOIN ON,WHERE
+			      ->WHERE(function($query)
+						{
+							$search = Input::get('search');
+							$search_manager_status = Input::get('manager_status');
+							$query->WHERE('manager_tbl.manager_name','LIKE', '%' . $search . '%')
+							 ->orWHERE('manager_company_tbl.manager_company_name','LIKE', '%' . $search . '%');
+					    })
+				  ->WHERE('manager_tbl.manager_status','LIKE',$search_manager_status . '%'); 
+			 $result = $query->Paginate(10);
 
 		//print_r($result);die;
+	
 		return view('company_management')->with("manager",$result);
   	
 	}
@@ -120,7 +144,7 @@ class CompanyManagementController extends Controller
 				 echo 'That ID is already registered.';
 			}
 			else {
-			  // Register the new company
+			  // Register the new manager
 			  $manager = new manager_tbl;
 			  $manager->manager_company_id_fk = Input::get('assigned_company');
 			  $manager->manager_name = Input::get('manager_name');
@@ -137,7 +161,7 @@ class CompanyManagementController extends Controller
 			  $manager->manager_status = 'Active';
 			  $manager->manager_language = 'kr';
 			  $manager->save();
-
+			 
 			  $this->close_refresh();
 			 
 			 
@@ -165,6 +189,8 @@ class CompanyManagementController extends Controller
 				$company_management->did = Input::get('did');
 				$company_management->manager_status = Input::get('manager_status');
 				$company_management->save();
+			
+			
 
 			}
 			$manager_edit = DB::table('manager_tbl')
@@ -247,7 +273,7 @@ class CompanyManagementController extends Controller
 // UPDATE OLD ACCOUNT STATUS TO IN-ACTIVE
 			$account_status = DB::table('manager_account_tbl')
 							  ->WHERE('manager_account_id','=',$manager_account_id)
-							  ->UPDATE(['account_status' => 'Inactive']);
+							  ->UPDATE(['account_status' => 'In-Active']);
 
 			//return redirect("company_management/transaction/add/$manager_account_id");
 			

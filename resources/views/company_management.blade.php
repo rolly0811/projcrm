@@ -19,21 +19,19 @@
         <!-- Main content -->
         <section class="content">
 			
-			<table style="width:30%;margin:5px;" >
+			<table style="width:100%;margin:5px;" >
                       <thead>
 					  <form action="" method="GET">
-						<tr>
-							<td><?=Lang::get($lang . '.search');?></td>
-							<td><select name="search_option" class="form-control input-sm">
-										<option value='level'>Level</option>
-										<option value='name'>Name</option>
-										<option value='company'>Companys</option>
-										
-										
-									</select>
+						<tr style='float:right'>
+							<td>
+								<select class='form-control' name='manager_status'>
+									<option value='' <?php if(Input::get('manager_status') == 'all'){ echo 'selected';}?>>All</option>
+									<option value='Active' <?php if(Input::get('manager_status') == 'Active'){ echo 'selected';}?>>Active</option>
+									<option value='In-Active' <?php if(Input::get('manager_status') == 'In-Active'){ echo 'selected';}?>>In-Active</option>
+								</select>
 							</td>
-							<td><input type="text" name="username" class="form-control input-sm pull-right" placeholder="Search" value="<?=Input::get('username')?>"></td>
-							<td><button type="submit "class="btn btn-sm btn-default"><i class="fa fa-search"></i></button></td>
+							<td><input type="text" name="search" class="form-control" placeholder="By Name or Company" value="<?=Input::get('search')?>"</td>
+							<td><button type="submit "class="btn  btn-default" name="btn_search"><i class="fa fa-search"></i></button></td>
 						</tr>
 					  </form>
 				</table>
@@ -120,7 +118,7 @@
 				
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix">
-                
+					 <?=$manager->appends(['search' => Input::get('search'),'search_manager_status' => Input::get('manager_status')])->render()?>
                 </div><!-- /.box-footer -->
               </div><!-- /.box -->
     
@@ -152,5 +150,6 @@
 </div>
 
 <!-- END MODAL -->
+
 
 @stop

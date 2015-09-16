@@ -20,4 +20,8 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('/assets/dist/js/demo.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('/assets/js/validation.js') }}" type="text/javascript"></script>
+	<!--ALERT-->
+	 <script src="{{ asset('/assets/dist/js/sweetalert-dev.js') }}"></script>
+	
+	
 
