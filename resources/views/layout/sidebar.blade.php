@@ -28,13 +28,13 @@
 
 			 <li class="header">ADMIN</li>
 				<li><a href="/company_management"><i class="fa fa-building"></i> <span><?=Lang::get($lang . '.company_management');?></span></a></li>
-				<li><a href="/user"><i class="fa fa-phone"></i> <span><?=Lang::get($lang . '.ring_group');?></span></a></li>
+				<li><a href="/ringgroups"><i class="fa fa-phone"></i> <span><?=Lang::get($lang . '.ring_group');?></span></a></li>
 				<li><a href="/user"><i class="fa fa-gears"></i> <span><?=Lang::get($lang . '.configuration');?></span></a></li>
 				<li><a href="/user"><i class="fa fa-book"></i> <span><?=Lang::get($lang . '.my_account');?>t</span></a></li>
 				<li><a href="/user"><i class="fa fa-sign-out"></i> <span><?=Lang::get($lang . '.logout');?></span></a></li>
 
 			 <li class="header">COMPANY</li>
-				<li><a href="/user"><i class="fa fa-building"></i> <span><?=Lang::get($lang . '.manage_users');?></span></a></li>
+				<li><a href="/manage_users"><i class="fa fa-building"></i> <span><?=Lang::get($lang . '.manage_users');?></span></a></li>
 				<li><a href="/user"><i class="fa fa-phone"></i> <span><?=Lang::get($lang . '.ring_group');?></span></a></li>
 				<li><a href="/user"><i class="fa fa-gears"></i> <span><?=Lang::get($lang . '.configuration');?></span></a></li>
 				<li><a href="/user"><i class="fa fa-list-ol"></i> <span><?=Lang::get($lang . '.contact_management');?></span></a></li>

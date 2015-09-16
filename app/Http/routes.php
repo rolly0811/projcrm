@@ -17,6 +17,7 @@ Route::any('/logout', 'LoginController@showLogout');
 Route::any('/user', 'UserController@showUser');
 Route::any('/dashboard', 'DashboardController@showDashboard');
 
+//MENU: Company Management
 Route::any('/company_management', 'CompanyManagementController@showCompanyManagement');
 Route::any('/company_management/edit/{manager_idx}', 'CompanyManagementController@showCompanyManagement_EDIT');
 Route::any('/company_management/add', 'CompanyManagementController@showCompanyManagement_ADD');
@@ -25,6 +26,10 @@ Route::any('/company_management/account/add/{manager_idx}', 'CompanyManagementCo
 Route::any('/company_management/transaction/add/{manager_account_id}', 'CompanyManagementController@showTransaction_ADD');
 
 Route::any('/company/add', 'CompanyController@showCompany_ADD');
+
+//MENU: Manage Users
+Route::any('/manage_users', 'ManageUsersController@showManageUsers');
+
 
 //VALIDATION
 Route::any('/check/company', 'CompanyManagementController@validate_company');
