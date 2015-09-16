@@ -26,7 +26,7 @@
 							<td><?=Lang::get($lang . '.search');?></td>
 							<td><select name="search_option" class="form-control input-sm">
 										
-										<option value='company'>Company</option>
+										<option value='company'>Companys</option>
 										<option value='level'>Level</option>
 										<option value='name'>Name</option>
 									</select>
