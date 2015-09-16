@@ -34,8 +34,13 @@
 				<li><a href="/user"><i class="fa fa-sign-out"></i> <span><?=Lang::get($lang . '.logout');?></span></a></li>
 
 			 <li class="header">COMPANY</li>
+<<<<<<< HEAD
 				<li><a href="/manage_users"><i class="fa fa-building"></i> <span><?=Lang::get($lang . '.manage_users');?></span></a></li>
 				<li><a href="/user"><i class="fa fa-phone"></i> <span><?=Lang::get($lang . '.ring_group');?></span></a></li>
+=======
+				<li><a href="/user"><i class="fa fa-building"></i> <span><?=Lang::get($lang . '.manage_users');?></span></a></li>
+				<li><a href="/ringgroups"><i class="fa fa-phone"></i> <span><?=Lang::get($lang . '.ring_group');?></span></a></li>
+>>>>>>> f7abedd68000cc2310a266fbb55443e7b978726b
 				<li><a href="/user"><i class="fa fa-gears"></i> <span><?=Lang::get($lang . '.configuration');?></span></a></li>
 				<li><a href="/user"><i class="fa fa-list-ol"></i> <span><?=Lang::get($lang . '.contact_management');?></span></a></li>
 				<li><a href="/user"><i class="fa fa-users"></i> <span><?=Lang::get($lang . '.member_management');?></span></a></li>

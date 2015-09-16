@@ -48,6 +48,14 @@ return array(
 		  'logout' => 'Logout',
 		  'register' => 'Register', // BUTTONS
 		  'close' => 'Close',
+        
+        //Added By Rolly
+                   'company' => 'Company',
+                   'ring_group' => 'Ring Group',
+                   'ring_group_name' => 'Ring Group Name',
+                   'edit' => 'Edit',
+                   'delete' => 'Delete',
+                    'action' => 'Action',
     ),
     'kr' => array(
 	      'company_name' => '업체장 소속 명', //COMPANY MANAGEMENT
@@ -97,5 +105,12 @@ return array(
 		  'logout' => '로그아웃',
 		  'register' => '등록', // BUTTONS
 		  'close' => '닫기',
+         //Added By Rolly
+                   'company' => '업체장소속',
+                   'ring_group' => '링그룹',
+                   'ring_group_name' => '링그룹',
+                   'edit' => '수정',
+                   'delete' => '삭제',
+                   'action' => '기능',
     ),
 );
