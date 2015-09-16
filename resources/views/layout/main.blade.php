@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <title>CRM</title>
 	 @include('layout/include/css')
+<<<<<<< HEAD
    
+=======
+        @include('layout/include/js')
+>>>>>>> 27aa52d97735daecfd40ab8c032014c3239883c3
   </head>
   <body class="sidebar-mini skin-blue-light">
     <div class="wrapper">
