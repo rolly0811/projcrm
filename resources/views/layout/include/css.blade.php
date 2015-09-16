@@ -9,11 +9,19 @@
     <!-- jvectormap -->
     <link href="{{ asset('/plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
-    <link href="{{ asset('assets/dist/css/AdminLTE.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/assets/dist/css/AdminLTE.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link href="{{ asset('/assets/dist/css/skins/_all-skins.min.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{ asset('/assets/plugins/select2/select2.min.css') }}">
+	
+    <!-- daterange picker -->
+    <link href="{{ asset('/assets/plugins/daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet" type="text/css" />
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link href="{{ asset('/assets/plugins/iCheck/all.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap time Picker -->
+    <link href="{{ asset('/assets/plugins/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Select2 -->
+    <link href="{{ asset('/assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>CRM</title>
-    @include('layout/include/css')
+	 @include('layout/include/css')
+ @include('layout/include/js')
   </head>
   <body class="sidebar-mini skin-blue-light">
     <div class="wrapper">
@@ -199,6 +200,6 @@
 
     </div><!-- ./wrapper -->
 
-   @include('layout/include/js')
+  
   </body>
 </html>

@@ -93,10 +93,21 @@
 						  <td><?=$row->manager_id;?></td>
 						  <td><?=$row->manager_landline;?></td>
 						  <td><?=$row->manager_mobile;?></td>
-						  <td><?=$row->manager_memo;?></td>
+						  <td title="<?=$row->manager_memo?>"><?=substr($row->manager_memo,0,25);?>...</td>
 						  <td><?=$row->manager_status;?></td>
-						  <td>Period</td>
-						  <td>Payment</td>
+						  <td><?=$row->account_start_date;?> - <br/><?=$row->account_end_date;?> </td>
+						  <td>
+						   
+							  <?php if($row->payment_status==''){?>
+								<a href="#" onclick="javascript:window.open('/company_management/account/add/<?=$row->manager_idx;?>','edit','width=700,height=400,scrollbars=yes, scrollbars=1, toolbar=no, resizable=1,left = 500,top=100')">
+									<span class="badge bg-yellow">No Record</span>
+								</a> 
+							   <?php ;}else{ ?>
+								 <a href="#" onclick="javascript:window.open('/company_management/transaction/add/<?=$row->manager_account_id;?>','add','width=700,height=1000,scrollbars=yes, scrollbars=1,left = 500,top=100')">
+									<span class="badge bg-<?php if($row->payment_status == 'Unpaid'){ echo 'red';}else if($row->payment_status == 'Paid'){ echo 'green';}?>"><?=$row->payment_status;?></span>
+							   <?php } ?>
+							 
+						  </td>
 						  <td> <a href="/company_management/edit/<?=$row->manager_idx;?>" class="btn btn-sm btn-info btn-flat pull-left">EDIT</a></td>
                         </tr>
 					<?php endforeach; ?>

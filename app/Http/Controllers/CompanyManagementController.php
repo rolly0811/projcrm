@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Manager_tbl;
 use App\Models\Manager_Company_tbl;
+use App\Models\Manager_account_tbl;
+use App\Models\Manager_pay_transaction_tbl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect; // For redirect to page
 use Illuminate\Support\Facades\Validator; // For validation
@@ -33,11 +35,47 @@ class CompanyManagementController extends Controller
 		 return $company_list;
 	}
 
+	private function close_refresh()
+	{
+		echo "<script>	
+				window.onunload = refreshParent;
+				function refreshParent() {
+					alert('DATA UPDATED');
+				window.opener.location.reload();
+				}
+			</script>
+			<script>window.close();</script>";
+	}
+
+	private function refresh_parent()
+	{
+		echo "<script>	
+				window.onunload = refreshParent;
+				function refreshParent() {
+					alert('DATA UPDATED');
+				window.opener.location.reload();
+				}
+			</script>";
+	}
+
     function showCompanyManagement() 
 	{
-		$result = DB::table('manager_tbl')
-				->JOIN('manager_company_tbl','manager_tbl.manager_company_id', '=' , 'manager_company_tbl.manager_company_id')	  
-				->Paginate(10);
+		/*
+		$result = DB::table('manager_company_tbl')
+				  ->JOIN('manager_tbl','manager_company_tbl.manager_company_id', '=' , 'manager_tbl.manager_company_id_fk')
+			      ->leftJOIN('manager_account_tbl','manager_tbl.manager_idx','=','manager_account_tbl.manager_idx_fk','WHERE','manager_account_tbl.account_status','=','Active') // ON/AND
+				  ->Paginate(10);
+		*/
+			$result = DB::table('manager_company_tbl')
+				  ->JOIN('manager_tbl','manager_company_tbl.manager_company_id', '=' , 'manager_tbl.manager_company_id_fk')
+			      ->leftJOIN('manager_account_tbl',function($joins)
+						{
+								$joins->on('manager_tbl.manager_idx','=','manager_account_tbl.manager_idx_fk');
+								$joins->on('manager_account_tbl.account_status','=',DB::raw("'Active'"));
+						})// LEFT JOIN ON,WHERE
+				  ->Paginate(10);
+
+		//print_r($result);die;
 		return view('company_management')->with("manager",$result);
   	
 	}
@@ -46,8 +84,6 @@ class CompanyManagementController extends Controller
 	 function showCompanyManagement_ADD() 
 	{
 		 
-
-
 		if(Input::get("save_company"))
 		{
 			$input['company_name'] = Input::get('company_name');
@@ -86,7 +122,7 @@ class CompanyManagementController extends Controller
 			else {
 			  // Register the new company
 			  $manager = new manager_tbl;
-			  $manager->manager_company_id = Input::get('assigned_company');
+			  $manager->manager_company_id_fk = Input::get('assigned_company');
 			  $manager->manager_name = Input::get('manager_name');
 			  $manager->manager_id = Input::get('manager_id');
 			  $manager->manager_password = Input::get('manager_password');
@@ -101,7 +137,9 @@ class CompanyManagementController extends Controller
 			  $manager->manager_status = 'Active';
 			  $manager->manager_language = 'kr';
 			  $manager->save();
-			  return redirect('/company_management/add');
+
+			  $this->close_refresh();
+			 
 			 
 			}
 		}
@@ -114,7 +152,7 @@ class CompanyManagementController extends Controller
 			if(Input::get())
 			{
 				$company_management = manager_tbl::find($manager_idx);
-				$company_management->manager_company_id = Input::get('assigned_company');
+				$company_management->manager_company_id_fk = Input::get('assigned_company');
 				$company_management->manager_name = Input::get('manager_name');
 				$company_management->manager_password = Input::get('manager_password');
 				$company_management->manager_landline = Input::get('landline');
@@ -127,13 +165,113 @@ class CompanyManagementController extends Controller
 				$company_management->did = Input::get('did');
 				$company_management->manager_status = Input::get('manager_status');
 				$company_management->save();
+
 			}
 			$manager_edit = DB::table('manager_tbl')
-					->JOIN('manager_company_tbl','manager_tbl.manager_company_id', '=' , 'manager_company_tbl.manager_company_id')
+					->JOIN('manager_company_tbl','manager_tbl.manager_company_id_fk', '=' , 'manager_company_tbl.manager_company_id')
 					->WHERE('manager_tbl.manager_idx','=', $manager_idx)
 					->get();
 			return view('company_management_edit')->with("manager_edit",$manager_edit)->with("company_list",$this->companyList());
   		
+	}
+
+	function showAccount_ADD($manager_idx)
+	{
+		if(Input::get())
+		{
+			$account = new manager_account_tbl;
+			$account->manager_idx_fk = $manager_idx;
+			$account->account_start_date = Input::get('start_date');
+			$account->account_end_date = Input::get('end_date');
+			$account->months = Input::get('months');
+			$account->total_price = Input::get('total_price');
+			$account->payment_status = 'Unpaid';
+			$account->account_status = 'Active';
+			$account->save();
+			
+			
+
+			//$this->close_refresh();
+		
+
+		}
+		return view('account_add');
+	}
+
+	function showTransaction_ADD($manager_account_id)
+	{
+	
+	//GET CURRENT MANAGER_IDX 
+			$manager_idx = DB::table('manager_account_tbl','manager_idx_fk')
+						   ->WHERE('manager_account_id','=', $manager_account_id)
+						   ->first();
+
+		if(Input::get('add_transaction'))
+		{
+			$transaction = new manager_pay_transaction_tbl;
+			$transaction ->manager_account_id_fk = $manager_account_id ;
+			$transaction ->paid_amount = Input::get('paid_amount');
+			$transaction ->payment_date = Input::get('payment_date');
+			$transaction ->remarks = Input::get('remarks');
+			$transaction->save();
+
+// GET TOTAL AMOUNT PAID
+			$total_amount_paid = DB::table('manager_pay_transaction_tbl')
+								->WHERE('manager_account_id_fk','=',$manager_account_id)
+								->sum('paid_amount'); 
+
+// UPDATE TO PAID WHEN BALANCE IS 0
+			$account_status = DB::table('manager_account_tbl')
+							  ->WHERE('total_price','<=',$total_amount_paid)
+							  ->WHERE('manager_account_id','=',$manager_account_id)
+							  ->UPDATE(['payment_status' => 'Paid']);
+
+			//return redirect("company_management/transaction/add/$manager_account_id");
+
+			$this->close_refresh();
+
+		}
+
+		if(Input::get('add_new_account'))
+		{
+			$account = new manager_account_tbl;
+			$account->manager_idx_fk = $manager_idx->manager_idx_fk;
+			$account->account_start_date = Input::get('start_date');
+			$account->account_end_date = Input::get('end_date');
+			$account->months = Input::get('months');
+			$account->total_price = Input::get('total_price');
+			$account->payment_status = 'Unpaid';
+			$account->account_status = 'Active';
+			$account->save();
+
+// UPDATE OLD ACCOUNT STATUS TO IN-ACTIVE
+			$account_status = DB::table('manager_account_tbl')
+							  ->WHERE('manager_account_id','=',$manager_account_id)
+							  ->UPDATE(['account_status' => 'Inactive']);
+
+			//return redirect("company_management/transaction/add/$manager_account_id");
+			
+			$this->close_refresh();
+
+		}
+		
+
+		$total = DB::table('manager_account_tbl')
+			   ->WHERE('manager_account_id',$manager_account_id)->get();
+
+		$transaction_history = DB::table('manager_account_tbl')
+							   ->JOIN('manager_pay_transaction_tbl','manager_account_tbl.manager_account_id','=','manager_pay_transaction_tbl.manager_account_id_fk')
+							   ->WHERE('manager_account_tbl.manager_account_id','=',$manager_account_id)
+							   ->WHERE('manager_account_tbl.account_status','=','Active')
+							   ->get();
+
+		$old_transaction_history = DB::table('manager_account_tbl')
+							   ->WHERE('manager_idx_fk','=',$manager_idx->manager_idx_fk)
+							   ->WHERE('account_status','=','Inactive')
+							   ->get();
+
+
+		return view('transaction_add')->with("transaction_history",$transaction_history)->with("total",$total)->with("old_history",$old_transaction_history);
 	}
 
 	function validate_company()
@@ -173,6 +311,8 @@ class CompanyManagementController extends Controller
         }
 
 	}
+
+	
 
 }
 

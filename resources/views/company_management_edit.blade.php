@@ -54,7 +54,7 @@
 
 					?>
 								
-						 <form class="form-horizontal" method="POST" action="" id="frm_manager" onSubmit="window.close();">
+						 <form class="form-horizontal" method="POST" action="" id="frm_manager">
                   <div class="box-body">
 					<table class="table table-bordered">
                     <tbody>

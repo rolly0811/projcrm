@@ -21,20 +21,16 @@ Route::any('/company_management', 'CompanyManagementController@showCompanyManage
 Route::any('/company_management/edit/{manager_idx}', 'CompanyManagementController@showCompanyManagement_EDIT');
 Route::any('/company_management/add', 'CompanyManagementController@showCompanyManagement_ADD');
 
+Route::any('/company_management/account/add/{manager_idx}', 'CompanyManagementController@showAccount_ADD');
+Route::any('/company_management/transaction/add/{manager_account_id}', 'CompanyManagementController@showTransaction_ADD');
+
 Route::any('/company/add', 'CompanyController@showCompany_ADD');
 
 //VALIDATION
 Route::any('/check/company', 'CompanyManagementController@validate_company');
 Route::post('/check/manager', 'CompanyManagementController@validate_manager');
 
-//Added By Rolly
-Route::any('/ringgroup', 'RinggroupController@show');
-Route::post('/ringgroup/add', 'RinggroupController@add');
 
-Route::any('/ringgroup/edit/{id}', 'RinggroupController@edit');
-Route::any('/ringgroup/cancel/{id}', 'RinggroupController@cancel');
-Route::post('/ringgroup/update/{id}', 'RinggroupController@update');
-Route::any('/ringgroup/delete/{id}', 'RinggroupController@delete');
 /*
 Route::controllers([
 	'auth' => 'Auth\AuthController',
