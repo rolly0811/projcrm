@@ -96,11 +96,14 @@ class CompanyManagementController extends Controller
 							 ->orWHERE('manager_company_tbl.manager_company_name','LIKE', '%' . $search . '%');
 					    })
 				  ->WHERE('manager_tbl.manager_status','LIKE',$search_manager_status . '%'); 
+
+			 $count = $query->count();
 			 $result = $query->Paginate(10);
+			
 
 		//print_r($result);die;
 	
-		return view('company_management')->with("manager",$result);
+		return view('company_management')->with("manager",$result)->with('count',$count);
   	
 	}
 

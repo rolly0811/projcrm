@@ -11,7 +11,7 @@
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Company Management</li>
+            <li class="active">Manage Users</li>
           </ol>
         </section>
 <!-- TABLE: LATEST ORDERS -->
@@ -45,7 +45,7 @@
 					<div class="btn-group">
                       <button class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><font size='4'><i class="fa fa-wrench"></i> Settings</font></button>
                       <ul class="dropdown-menu" role="menu">
-                        <li><a href="#" onclick="javascript:window.open('/company_management/add','mywindowtitle','width=1100,height=800,scrollbars=yes, scrollbars=1, toolbar=no, resizable=1,left = 500,top=100')">ADD</a></li>
+                        <li><a href="#" onclick="javascript:window.open('/manage_users/add','mywindowtitle','width=1100,height=800,scrollbars=yes, scrollbars=1, toolbar=no, resizable=1,left = 500,top=100')">ADD</a></li>
 						<li><a href="#">SHOW ACTIVE</a></li>
 						<li><a href="#">SHOW IN-ACTIVE</a></li>
 						<li><a href="#">SHOW ALL</a></li>
@@ -65,16 +65,13 @@
                           <th>NO.</th>
                           <th><?=Lang::get($lang . '.level');?></th>
                           <th><?=Lang::get($lang . '.assigned_company');?></th>
-                          <th><?=Lang::get($lang . '.pay_free');?></th>
+                          <th><?=Lang::get($lang . '.department');?></th>
 						  <th><?=Lang::get($lang . '.assign_extension');?></th>
 						  <th><?=Lang::get($lang . '.name');?></th>
 						  <th><?=Lang::get($lang . '.id');?></th>
 						  <th><?=Lang::get($lang . '.landline');?></th>
 						  <th><?=Lang::get($lang . '.mobile');?></th>
-						  <th><?=Lang::get($lang . '.memo');?></th>
 						  <th><?=Lang::get($lang . '.status');?></th>
-						  <th><?=Lang::get($lang . '.period');?></th>
-						  <th><?=Lang::get($lang . '.payment');?></th>
 						  <th><?=Lang::get($lang . '.action');?></th>
                         </tr>
                       </thead>

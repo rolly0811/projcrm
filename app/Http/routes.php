@@ -27,6 +27,9 @@ Route::any('/company_management/transaction/add/{manager_account_id}', 'CompanyM
 
 Route::any('/company/add', 'CompanyController@showCompany_ADD');
 
+//MENU: RING GROUP
+Route::any('/ringgroup/add', 'RinggroupController@add');
+
 //MENU: Manage Users
 Route::any('/manage_users', 'ManageUsersController@showManageUsers');
 

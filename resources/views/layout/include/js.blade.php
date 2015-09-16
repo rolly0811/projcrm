@@ -16,7 +16,7 @@
     <!-- ChartJS 1.0.1 -->
     <script src="{{ asset('/assets/plugins/chartjs/Chart.min.js') }}" type="text/javascript"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('/assets/dist/js/pages/dashboard2.js') }}" type="text/javascript"></script>
+    <!-- <script src="{{ asset('/assets/dist/js/pages/dashboard2.js') }}" type="text/javascript"></script> -->
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('/assets/dist/js/demo.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('/assets/js/validation.js') }}" type="text/javascript"></script>

@@ -31,6 +31,7 @@ return array(
 		 'add_new_company' => 'Add New Company',
 		 'search' => 'Search by: ',
 		  'choose_option' => 'Choose Option',
+		  'department' => 'Department',//MANAGE USERS
 		  'start_date' => 'Start Date', // ACCOUNTS
 		  'end_date' => 'End Date',
 		  'months' => 'Months',
@@ -48,14 +49,7 @@ return array(
 		  'logout' => 'Logout',
 		  'register' => 'Register', // BUTTONS
 		  'close' => 'Close',
-        
-        //Added By Rolly
-                   'company' => 'Company',
-                   'ring_group' => 'Ring Group',
-                   'ring_group_name' => 'Ring Group Name',
-                   'edit' => 'Edit',
-                   'delete' => 'Delete',
-                    'action' => 'Action',
+
     ),
     'kr' => array(
 	      'company_name' => '업체장 소속 명', //COMPANY MANAGEMENT
@@ -88,6 +82,7 @@ return array(
 		 'add_new_company' => ' 업체장 소속 등록',
 		  'search' => '검 색',
 		  'choose_option' => '선택해주세요.',
+		  'department' => '상담원소속',//MANAGE USERS
 		  'start_date' => '결재 시작일', // ACCOUNTS
 		  'end_date' => '결재 종료일',
 		  'months' => '개월수',
@@ -105,12 +100,5 @@ return array(
 		  'logout' => '로그아웃',
 		  'register' => '등록', // BUTTONS
 		  'close' => '닫기',
-         //Added By Rolly
-                   'company' => '업체장소속',
-                   'ring_group' => '링그룹',
-                   'ring_group_name' => '링그룹',
-                   'edit' => '수정',
-                   'delete' => '삭제',
-                   'action' => '기능',
     ),
 );
