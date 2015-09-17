@@ -36,6 +36,7 @@ Route::any('/check/company', 'CompanyManagementController@validate_company');
 Route::post('/check/manager', 'CompanyManagementController@validate_manager');
 Route::post('/check/manager/sample', 'CompanyManagementController@validate_manager_sample');
 
+Route::any('/ringgroup/add', 'RinggroupController@add');
 Route::any('/ringgroups', 'RinggroupController@show');
 Route::any('/ringgroup/edit/{id}', 'RinggroupController@edit');
 Route::any('/ringgroup/cancel/{id}', 'RinggroupController@cancel');

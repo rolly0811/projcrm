@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>CRM</title>
 	 @include('layout/include/css')
- @include('layout/include/js')
+        @include('layout/include/js')
   </head>
   <body class="sidebar-mini skin-blue-light">
     <div class="wrapper">
