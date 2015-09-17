@@ -80,11 +80,15 @@
                       </thead>
                       <tbody>
 					<?php 
+						if(Input::get())
+						  {
+							 $count = $count - ((Input::get('page') - 1) * 10);
+						  }
 						foreach($manager as $row): 
 					?>
                         <tr>
                           <td><input type="checkbox" /></td>
-                          <td></td>
+                          <td><?=$count--?></td>
                           <td><?=$row->manager_level;?></td>
                           <td><?=$row->manager_company_name;?></td>
 						  <td><?=$row->free_pay;?></td>
