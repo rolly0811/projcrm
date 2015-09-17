@@ -48,7 +48,6 @@ return array(
 		  'logout' => 'Logout',
 		  'register' => 'Register', // BUTTONS
 		  'close' => 'Close',
-        
         //Added By Rolly
                    'company' => 'Company',
                    'ring_group' => 'Ring Group',
