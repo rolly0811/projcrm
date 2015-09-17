@@ -20,4 +20,10 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('/assets/dist/js/demo.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('/assets/js/validation.js') }}" type="text/javascript"></script>
+        <script src="/assets/js/functions.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function(){
+            $(".select2").select2(); 
+        });
+    </script>
 
