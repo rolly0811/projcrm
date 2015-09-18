@@ -10,7 +10,7 @@
                   <h3 class="box-title"><?=Lang::get($lang . '.company_manager_register');?></h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="POST" action="" id="frm_manager" onSubmit="window.close();">
+                <form class="form-horizontal" method="POST" action="" id="frm_manager" >
                   <div class="box-body">
 					<table class="table table-bordered">
                     <tbody>
@@ -118,47 +118,6 @@
 
                   </tbody></table>
 
-
-
-				  <table class="table table-bordered">
-                    <tbody>
-					
-					<tr STYLE='background-color: #f9f9f9;'><td  colspan='4'>ACCOUNT</td></tr>
-                    <tr>
-						  <td>
-							<?=Lang::get($lang . '.start_date');?>
-						  </td>
-
-						  <td>
-							<input type="text" class="form-control" name="manager_name" required> 
-						  </td>
-
-						  <td>
-							<?=Lang::get($lang . '.end_date');?>
-						  </td>
-						  
-						  <td>
-							<p id="manager_validate" style="float:right;"><i></i></p>
-							<input type="text" class="form-control" name="manager_id" placeholder="NOTE: ID must be unique." onkeypress="validate_manager(this.value)" onblur="validate_manager(this.value)" required>
-						  </td>
-                    </tr>
-                    
-					<tr>
-						  <td>
-							<?=Lang::get($lang . '.months');?>
-						  </td>
-						 <td></td>
-						
-						  <td>
-							<?php echo Lang::get($lang . '.total_price');?>
-						 </td>
-
-						 <td>
-							<input type="text" class="form-control" name="manager_password" required>
-						 </td>
-                    </tr>
-                  </tbody></table>
-                   
                   </div><!-- /.box-body -->
                   <div class="box-footer">
 					<input  type="submit" class="btn btn-info pull-right" value="<?=Lang::get($lang . '.register');?>" name="save_manager"/>
@@ -197,11 +156,12 @@
 
 <!-- END MODAL -->
 </section>
+
+  <script>
+        $("#frm_manager").submit(function(){
+			swal('Data Added', 'Successfully', 'success');
+	  });
+  </script>
+
 @stop
 
-<script src="{{ asset('/assets/admin/plugins/jQueryUI/jquery-ui.min.js') }}"></script>
-<script>
-    $(document).ready(function(){
-       $('.datepicker').datepicker(); 
-    });
-</script>

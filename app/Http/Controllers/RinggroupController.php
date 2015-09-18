@@ -17,7 +17,7 @@ class RinggroupController extends Controller {
                     ->leftJoin('manager_company_tbl','manager_company_tbl.manager_company_id', '=', 'ring_group_tbl.manager_company_id_fk')
                     ->orderBy('ring_group_tbl.ring_group_id', 'DESC');
             $companies = new Manager_Company_tbl;
-            return view('ringgroup')->with('ringgroups', $ringgroups->paginate(5))->with('companies', $companies->get());
+            return view('ringgroup')->with('ringgroups', $ringgroups->paginate(10))->with('companies', $companies->get());
         }
         
         public function add() {

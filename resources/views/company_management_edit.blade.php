@@ -25,7 +25,7 @@
                       <thead>
 						<tr>
 						<td colspan="100%">
-						<form action="" method="GET">
+						<form action="" method="GET" >
 							<div class="input-group" style="width: 150px;float:right;">
 							  <input type="text" name="username" class="form-control input-sm pull-right" placeholder="Search" value="<?=Input::get('username')?>">
 							  
@@ -54,7 +54,7 @@
 
 					?>
 								
-						 <form class="form-horizontal" method="POST" action="" id="frm_manager" onSubmit="window.close();">
+						 <form class="form-horizontal" method="POST" action="" id="frm_manager">
                   <div class="box-body">
 					<table class="table table-bordered">
                     <tbody>
@@ -148,7 +148,7 @@
                    
                   </div><!-- /.box-body -->
                   <div class="box-footer">
-					<input  type="submit" class="btn btn-info pull-right" value="<?=Lang::get($lang . '.register');?>" name="save_manager"/>
+					<input  type="submit" class="btn btn-info pull-right" value="<?=Lang::get($lang . '.register');?>" name="save_manager" id='updated'/>
                     <input type="reset" class="btn btn-default pull-left" value="Reset" />
                    
                   </div><!-- /.box-footer -->
@@ -196,5 +196,12 @@
 </div>
 
 <!-- END MODAL -->
+
+
+  <script>
+        $("#frm_manager").submit(function(){
+			swal('Data Updated!', 'Updated', 'success');
+	  });
+  </script>
 
 @stop

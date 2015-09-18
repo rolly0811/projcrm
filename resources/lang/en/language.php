@@ -29,12 +29,15 @@ return array(
 		 'action' => 'Action',
 		 'add_company' => 'Add Company Manager', 
 		 'add_new_company' => 'Add New Company',
+		 'search' => 'Search by: ',
+		  'choose_option' => 'Choose Option',
 		  'start_date' => 'Start Date', // ACCOUNTS
 		  'end_date' => 'End Date',
 		  'months' => 'Months',
 		  'no_of_line' => 'No of Line',
 		  'total_price' => 'Total Price',
 		  'date_of_receipt' => 'Date of Receipt',
+		   'payment_status' => 'Payment Status',
 		  'company_management' => 'Company Management', // MENUS: ADMIN
 		  'ring_group' => 'Ring Group',
 		  'configuration' => 'Configuration',
@@ -45,14 +48,13 @@ return array(
 		  'logout' => 'Logout',
 		  'register' => 'Register', // BUTTONS
 		  'close' => 'Close',
-        
-                  //Added By Rolly
+        //Added By Rolly
                    'company' => 'Company',
                    'ring_group' => 'Ring Group',
                    'ring_group_name' => 'Ring Group Name',
                    'edit' => 'Edit',
                    'delete' => 'Delete',
-        'action' => 'Action',
+                    'action' => 'Action',
     ),
     'kr' => array(
 	      'company_name' => '업체장 소속 명', //COMPANY MANAGEMENT
@@ -72,8 +74,8 @@ return array(
 		 'context' => 'Context',
 		 'memo' => '업체 정보',
 		 'status' => '사용유무',
-		 'active' => '사용',
-		 'in-active' => 'INACTIVE -TRANSLATE',
+		 'active' => '사용중',
+		 'in-active' => '사용안함',
 		 'did' => 'DID',
 		 'level' => '구분',
 		 'mobile' => '무선전화',
@@ -83,12 +85,15 @@ return array(
 		 'action' => '기능',
 		 'add_company' => '업체장 소속 등록',
 		 'add_new_company' => ' 업체장 소속 등록',
+		  'search' => '검 색',
+		  'choose_option' => '선택해주세요.',
 		  'start_date' => '결재 시작일', // ACCOUNTS
 		  'end_date' => '결재 종료일',
 		  'months' => '개월수',
 		  'no_of_line' => '회선수',
 		  'total_price' => '총가격',
 		  'date_of_receipt' => '접수일자',
+		  'payment_status' => 'Payment Status | Translate',
 		 'company_management' => '업체장관리', // MENUS: ADMIN
 		  'ring_group' => ' 링그룹',
 		  'configuration' => '환경설정',
@@ -99,14 +104,12 @@ return array(
 		  'logout' => '로그아웃',
 		  'register' => '등록', // BUTTONS
 		  'close' => '닫기',
-        
-                   //Added By Rolly
+         //Added By Rolly
                    'company' => '업체장소속',
                    'ring_group' => '링그룹',
                    'ring_group_name' => '링그룹',
                    'edit' => '수정',
                    'delete' => '삭제',
                    'action' => '기능',
-        
     ),
 );

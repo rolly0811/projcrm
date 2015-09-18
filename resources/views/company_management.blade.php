@@ -14,28 +14,28 @@
             <li class="active">Company Management</li>
           </ol>
         </section>
+<!-- TABLE: LATEST ORDERS -->
 
         <!-- Main content -->
         <section class="content">
-
-              <!-- TABLE: LATEST ORDERS -->
-
-			   <table class="table no-margin">
+			
+			<table style="width:100%;margin:5px;" >
                       <thead>
-						<tr>
-						<td colspan="100%">
-						<form action="" method="GET">
-							<div class="input-group" style="width: 150px;float:right;">
-							  <input type="text" name="username" class="form-control input-sm pull-right" placeholder="Search" value="<?=Input::get('username')?>">
-							  
-							  <div class="input-group-btn">
-								<button type="submit "class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-							  </div>
-						</form>
-							 </div>
-						</td>
+					  <form action="" method="GET">
+						<tr style='float:right'>
+							<td>
+								<select class='form-control' name='manager_status'>
+									<option value='' <?php if(Input::get('manager_status') == 'all'){ echo 'selected';}?>>All</option>
+									<option value='Active' <?php if(Input::get('manager_status') == 'Active'){ echo 'selected';}?>>Active</option>
+									<option value='In-Active' <?php if(Input::get('manager_status') == 'In-Active'){ echo 'selected';}?>>In-Active</option>
+								</select>
+							</td>
+							<td><input type="text" name="search" class="form-control" placeholder="By Name or Company" value="<?=Input::get('search')?>"</td>
+							<td><button type="submit "class="btn  btn-default" name="btn_search"><i class="fa fa-search"></i></button></td>
 						</tr>
+					  </form>
 				</table>
+              
 
               <div class="box box-info">
                 <div class="box-header with-border">
@@ -80,11 +80,15 @@
                       </thead>
                       <tbody>
 					<?php 
+						if(Input::get())
+						  {
+							 $count = $count - ((Input::get('page') - 1) * 10);
+						  }
 						foreach($manager as $row): 
 					?>
                         <tr>
                           <td><input type="checkbox" /></td>
-                          <td></td>
+                          <td><?=$count--?></td>
                           <td><?=$row->manager_level;?></td>
                           <td><?=$row->manager_company_name;?></td>
 						  <td><?=$row->free_pay;?></td>
@@ -93,10 +97,21 @@
 						  <td><?=$row->manager_id;?></td>
 						  <td><?=$row->manager_landline;?></td>
 						  <td><?=$row->manager_mobile;?></td>
-						  <td><?=$row->manager_memo;?></td>
+						  <td title="<?=$row->manager_memo?>"><?=substr($row->manager_memo,0,25);?>...</td>
 						  <td><?=$row->manager_status;?></td>
-						  <td>Period</td>
-						  <td>Payment</td>
+						  <td><?=$row->account_start_date;?> - <br/><?=$row->account_end_date;?> </td>
+						  <td>
+						   
+							  <?php if($row->payment_status==''){?>
+								<a href="#" onclick="javascript:window.open('/company_management/account/add/<?=$row->manager_idx;?>','edit','width=700,height=400,scrollbars=yes, scrollbars=1, toolbar=no, resizable=1,left = 500,top=100')">
+									<span class="badge bg-yellow">No Record</span>
+								</a> 
+							   <?php ;}else{ ?>
+								 <a href="#" onclick="javascript:window.open('/company_management/transaction/add/<?=$row->manager_account_id;?>','add','width=700,height=1000,scrollbars=yes, scrollbars=1,left = 500,top=100')">
+									<span class="badge bg-<?php if($row->payment_status == 'Unpaid'){ echo 'red';}else if($row->payment_status == 'Paid'){ echo 'green';}?>"><?=$row->payment_status;?></span>
+							   <?php } ?>
+							 
+						  </td>
 						  <td> <a href="/company_management/edit/<?=$row->manager_idx;?>" class="btn btn-sm btn-info btn-flat pull-left">EDIT</a></td>
                         </tr>
 					<?php endforeach; ?>
@@ -107,7 +122,7 @@
 				
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix">
-                
+					 <?=$manager->appends(['search' => Input::get('search'),'search_manager_status' => Input::get('manager_status')])->render()?>
                 </div><!-- /.box-footer -->
               </div><!-- /.box -->
     
@@ -139,5 +154,6 @@
 </div>
 
 <!-- END MODAL -->
+
 
 @stop
