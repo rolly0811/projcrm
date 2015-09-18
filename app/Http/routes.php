@@ -46,6 +46,8 @@ Route::any('/ringgroup/cancel/{id}', 'RinggroupController@cancel');
 Route::post('/ringgroup/update/{id}', 'RinggroupController@update');
 Route::any('/ringgroup/delete/{id}', 'RinggroupController@delete');
 
+Route::any('/config', 'ConfigController@show');
+Route::any('/config/edit', 'ConfigController@editconfig');
 /*
 Route::controllers([
 	'auth' => 'Auth\AuthController',
