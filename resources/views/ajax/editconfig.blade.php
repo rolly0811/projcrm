@@ -27,7 +27,7 @@
     <a href="" class="btn btn-info btn-sm btn-flat" onclick="editconfig({{ $number }}, {{ $config->config_id }}); return false;">
         <i class="fa fa-edit"></i> <span>Edit</span>
     </a>
-    <a href="" class="btn btn-danger btn-sm btn-flat">
+    <a href=""  onclick="deleteconfig({{ $config->config_id }}); return false;" class="btn btn-danger btn-sm btn-flat">
         <i class="fa fa-trash"></i> <span>Delete</span>
     </a>
 </td>

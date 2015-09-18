@@ -12,10 +12,10 @@ $number = ($total + 1) - (($page * 10)-10);
     <td>{{ $c->manager_company_name }}</td>
     <td>{{ $c->company_ip }}</td>
     <td>
-        <a href="" class="btn btn-info btn-sm btn-flat">
+        <a href="" onclick="editconfig({{ $number }}, {{ $c->config_id }}); return false;" class="btn btn-info btn-sm btn-flat">
             <i class="fa fa-edit"></i> <span>Edit</span>
         </a>
-        <a href="" class="btn btn-danger btn-sm btn-flat">
+        <a href="" onclick="deleteconfig({{ $c->config_id }}); return false;" class="btn btn-danger btn-sm btn-flat">
             <i class="fa fa-trash"></i> <span>Delete</span>
         </a>
     </td>

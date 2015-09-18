@@ -91,8 +91,8 @@ $number = ($total + 1) - (($page * 10)-10);
                         <tr>
                             <th>Check</th>
                             <th>No.</th>
-                            <th>{{ Lang::get('language.' . $lang . '.company') }}</th>
-                            <th>{{ Lang::get('language.' . $lang . '.cti_ip') }}</th>
+                            <th style="width: 350px;">{{ Lang::get('language.' . $lang . '.company') }}</th>
+                            <th style="width: 450px;">{{ Lang::get('language.' . $lang . '.cti_ip') }}</th>
                             <th>{{ Lang::get('language.' . $lang . '.action') }}</th>
                         </tr>
                     </thead>
@@ -107,7 +107,7 @@ $number = ($total + 1) - (($page * 10)-10);
                                 <a href="" class="btn btn-info btn-sm btn-flat" onclick="editconfig({{ $number }}, {{ $c->config_id }}); return false;">
                                     <i class="fa fa-edit"></i> <span>Edit</span>
                                 </a>
-                                <a href="" class="btn btn-danger btn-sm btn-flat">
+                                <a href="" onclick="deleteconfig({{ $c->config_id }}); return false;" class="btn btn-danger btn-sm btn-flat">
                                     <i class="fa fa-trash"></i> <span>Delete</span>
                                 </a>
                             </td>

@@ -20,14 +20,20 @@ class ConfigController extends Controller {
 
             $configs = DB::table('configuration_tbl')
                     ->leftJoin('manager_company_tbl', 'configuration_tbl.manager_company_id_fk', '=', 'manager_company_tbl.manager_company_id')
+                    ->where('configuration_tbl.status', 'Active')
                     ->orderBy('configuration_tbl.config_id', 'DESC');
-            $Allconfigs = DB::table('configuration_tbl')->leftJoin('manager_company_tbl', 'configuration_tbl.manager_company_id_fk', '=', 'manager_company_tbl.manager_company_id');
+            $Allconfigs = DB::table('configuration_tbl')
+                    ->leftJoin('manager_company_tbl', 'configuration_tbl.manager_company_id_fk', '=', 'manager_company_tbl.manager_company_id')
+                    ->where('configuration_tbl.status', 'Active');
             return view('ajax/configs')->with('configs', $configs->paginate(10))->with('total', $Allconfigs->count());
         } else {
             $configs = DB::table('configuration_tbl')
                     ->leftJoin('manager_company_tbl', 'configuration_tbl.manager_company_id_fk', '=', 'manager_company_tbl.manager_company_id')
+                    ->where('configuration_tbl.status', 'Active')
                     ->orderBy('configuration_tbl.config_id', 'DESC');
-            $Allconfigs = DB::table('configuration_tbl')->leftJoin('manager_company_tbl', 'configuration_tbl.manager_company_id_fk', '=', 'manager_company_tbl.manager_company_id');
+            $Allconfigs = DB::table('configuration_tbl')
+                    ->leftJoin('manager_company_tbl', 'configuration_tbl.manager_company_id_fk', '=', 'manager_company_tbl.manager_company_id')
+                    ->where('configuration_tbl.status', 'Active');
             $companies = new Manager_Company_tbl();
             return view('configurations')->with('configs', $configs->paginate(10))->with('companies', $companies->get())->with('total', $Allconfigs->count());
         }
@@ -59,6 +65,23 @@ class ConfigController extends Controller {
             }
            
         }
+    }
+    
+    public function delete() {
+        $id = Input::get('id');
+        $config = Configuration::find($id);
+        $config->status = "In-Active";
+        $config->save();
+        
+        $configs = DB::table('configuration_tbl')
+                    ->leftJoin('manager_company_tbl', 'configuration_tbl.manager_company_id_fk', '=', 'manager_company_tbl.manager_company_id')
+                    ->where('configuration_tbl.status', 'Active')
+                    ->orderBy('configuration_tbl.config_id', 'DESC');
+        $Allconfigs = DB::table('configuration_tbl')
+                ->leftJoin('manager_company_tbl', 'configuration_tbl.manager_company_id_fk', '=', 'manager_company_tbl.manager_company_id')
+                ->where('configuration_tbl.status', 'Active');
+        $companies = new Manager_Company_tbl();
+        return view('ajax/configs')->with('configs', $configs->paginate(10))->with('companies', $companies->get())->with('total', $Allconfigs->count());
     }
 
 }
